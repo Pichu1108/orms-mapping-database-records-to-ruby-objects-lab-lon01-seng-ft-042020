@@ -26,6 +26,8 @@ class Student
     # return a new instance of the Student class
     sql = <<-SQL
       SELECT * FROM students WHERE students.name= name
+      SQL
+      DB[:conn].execute(sql).map {|row| self.new_from_db(row)}
   end
 
   def save
